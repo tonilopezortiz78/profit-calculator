@@ -372,14 +372,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Calculation Functions
     function updateSummary() {
         const purchases = getSelectedPurchases();
+        const summarySection = document.querySelector('.summary-section');
         
         if (purchases.length === 0) {
-            avgBuyPriceEl.textContent = '0.00 USDT';
-            totalQuantityEl.textContent = '0.00';
-            totalInvestmentEl.textContent = '0.00 USDT';
+            summarySection.style.display = 'none';
             return;
         }
 
+        summarySection.style.display = 'block';
         const totalInvestment = purchases.reduce((sum, purchase) => sum + purchase.total, 0);
         const totalQuantity = purchases.reduce((sum, purchase) => sum + purchase.quantity, 0);
         const avgBuyPrice = totalInvestment / totalQuantity;
@@ -392,11 +392,19 @@ document.addEventListener('DOMContentLoaded', function() {
     function calculateResults() {
         const purchases = getSelectedPurchases();
         const sellPrice = parseFloat(sellPriceInput.value) || 0;
+        const resultsSection = document.querySelector('.results-section');
+        
+        if (purchases.length === 0 && sellPrice <= 0) {
+            resultsSection.style.display = 'none';
+            return;
+        }
+        
+        resultsSection.style.display = 'block';
         
         if (purchases.length === 0 || sellPrice <= 0) {
-            totalReturnEl.textContent = '0.00 USDT';
-            profitLossEl.textContent = '0.00 USDT';
-            gainPercentageEl.textContent = '0.00%';
+            totalReturnEl.textContent = '—';
+            profitLossEl.textContent = '—';
+            gainPercentageEl.textContent = '—';
             
             profitLossEl.className = 'result-value';
             gainPercentageEl.className = 'result-value';
@@ -423,6 +431,13 @@ document.addEventListener('DOMContentLoaded', function() {
             profitLossEl.classList.add('loss');
             gainPercentageEl.classList.add('loss');
         }
+    }
+    
+    function hideEmptyResults() {
+        const summarySection = document.querySelector('.summary-section');
+        const resultsSection = document.querySelector('.results-section');
+        summarySection.style.display = 'none';
+        resultsSection.style.display = 'none';
     }
 
     // Event Listeners
@@ -488,4 +503,7 @@ document.addEventListener('DOMContentLoaded', function() {
     showSection('excel');
     updateSummary();
     calculateResults();
+    
+    // Hide summary section initially when no data
+    hideEmptyResults();
 }); 
