@@ -374,13 +374,14 @@ input[type="number"]:focus {
     border: 2px solid #e9ecef;
     border-radius: 10px;
     position: relative;
+    width: 100%;
 }
 
 .excel-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.8rem;
-    min-width: 1200px; /* Ensure minimum width to show all columns */
+    min-width: 800px; /* Reduced minimum width for better mobile experience */
 }
 
 .excel-table thead {
@@ -568,39 +569,73 @@ input[type="number"]:focus {
     }
     
     /* Better table responsiveness */
-    .table-container,
-    .excel-table-container {
-        overflow: auto;
+    .table-container {
+        overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
     
     .excel-table-container {
-        max-height: 350px;
+        max-height: 400px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
         margin: 0 -15px; /* Extend beyond container on mobile */
+        border-radius: 8px;
     }
     
-    .purchases-table,
-    .excel-table {
+    .purchases-table {
         font-size: 0.7rem;
         min-width: 100%;
     }
     
     .excel-table {
-        min-width: 1000px; /* Ensure all columns are visible */
+        font-size: 0.65rem;
+        min-width: 600px; /* Reduced for mobile */
     }
     
     .purchases-table th,
-    .purchases-table td,
-    .excel-table th,
-    .excel-table td {
+    .purchases-table td {
         padding: 6px 4px;
         white-space: nowrap;
-        min-width: 80px;
+        min-width: 70px;
+    }
+    
+    .excel-table th,
+    .excel-table td {
+        padding: 4px 3px;
+        white-space: nowrap;
+        min-width: 60px;
+        font-size: 0.65rem;
     }
     
     .excel-table .checkbox-cell {
-        min-width: 40px;
-        width: 40px;
+        min-width: 30px;
+        width: 30px;
+        padding: 4px 2px;
+    }
+    
+    /* Hide less important columns on mobile */
+    .excel-table th:nth-child(n+8),
+    .excel-table td:nth-child(n+8) {
+        display: none;
+    }
+    
+    /* Show only essential columns on very small screens */
+    @media (max-width: 480px) {
+        .excel-table th:nth-child(n+6),
+        .excel-table td:nth-child(n+6) {
+            display: none;
+        }
+        
+        .excel-table {
+            min-width: 400px;
+            font-size: 0.6rem;
+        }
+        
+        .excel-table th,
+        .excel-table td {
+            padding: 3px 2px;
+            min-width: 50px;
+        }
     }
     
     .table-input {
@@ -634,40 +669,93 @@ input[type="number"]:focus {
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 5px;
+    }
+    
     h1 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
     }
     
     .calculator {
-        padding: 15px 10px;
+        padding: 12px 8px;
+        border-radius: 12px;
     }
     
     .drop-content h3 {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
     
     .drop-icon {
         font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    
+    .drop-zone {
+        padding: 20px 10px;
     }
     
     .excel-table-container {
-        max-height: 250px;
-    }
-    
-    .purchases-table,
-    .excel-table {
-        font-size: 0.7rem;
+        max-height: 300px;
+        margin: 0 -8px; /* Extend even more on very small screens */
     }
     
     .control-btn,
     .add-row-btn,
     .mode-btn {
-        font-size: 0.8rem;
-        padding: 6px 10px;
+        font-size: 0.75rem;
+        padding: 6px 8px;
     }
     
     .summary-item,
     .result-item {
         padding: 6px 0;
+    }
+    
+    .results-section,
+    .summary-section,
+    .sell-section {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+    
+    /* Compact table headers */
+    .table-header h3 {
+        font-size: 1rem;
+    }
+    
+    .table-controls {
+        gap: 6px;
+    }
+    
+    .selected-count {
+        font-size: 0.8rem;
+    }
+} 
+
+/* Responsive table indicator */
+.table-responsive-info {
+    display: none;
+    background: #fff3e0;
+    border: 1px solid #ffcc02;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    color: #f57c00;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .table-responsive-info {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .table-responsive-info {
+        font-size: 0.75rem;
+        padding: 6px 10px;
     }
 } 
