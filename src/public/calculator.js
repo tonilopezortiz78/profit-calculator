@@ -116,12 +116,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const checkboxHeader = document.createElement('th');
         checkboxHeader.innerHTML = '<input type="checkbox" id="selectAllCheckbox">';
         checkboxHeader.className = 'checkbox-cell';
+        checkboxHeader.style.position = 'sticky';
+        checkboxHeader.style.left = '0';
+        checkboxHeader.style.zIndex = '11';
+        checkboxHeader.style.backgroundColor = '#e3f2fd';
         headerRow.appendChild(checkboxHeader);
         
         // Add data headers
-        headers.forEach(header => {
+        headers.forEach((header, index) => {
             const th = document.createElement('th');
             th.textContent = header;
+            
+            // Make important columns more visible
+            if (header.toLowerCase().includes('price') || 
+                header.toLowerCase().includes('amount') || 
+                header.toLowerCase().includes('quantity') ||
+                header.toLowerCase().includes('side')) {
+                th.style.backgroundColor = '#fff3e0';
+                th.style.fontWeight = '700';
+            }
+            
             headerRow.appendChild(th);
         });
         
@@ -146,8 +160,15 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add checkbox cell (only enable for Buy transactions)
             const checkboxCell = document.createElement('td');
             checkboxCell.className = 'checkbox-cell';
+            checkboxCell.style.position = 'sticky';
+            checkboxCell.style.left = '0';
+            checkboxCell.style.zIndex = '10';
+            checkboxCell.style.backgroundColor = isBuy ? '#f8fff9' : (isSell ? '#fff5f5' : '#fff');
+            
             if (isBuy) {
                 checkboxCell.innerHTML = `<input type="checkbox" class="row-checkbox" data-row-index="${index}">`;
+            } else {
+                checkboxCell.innerHTML = '—';
             }
             tr.appendChild(checkboxCell);
             
@@ -159,9 +180,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Format specific columns
                 if (header.toLowerCase().includes('side')) {
                     td.className = isBuy ? 'side-buy' : (isSell ? 'side-sell' : '');
+                    td.style.fontWeight = '600';
                 }
                 
-                td.textContent = value;
+                // Highlight important data columns
+                if (header.toLowerCase().includes('price') || 
+                    header.toLowerCase().includes('amount') || 
+                    header.toLowerCase().includes('quantity')) {
+                    td.style.backgroundColor = '#fafafa';
+                    td.style.fontWeight = '500';
+                }
+                
+                // Format numbers for better readability
+                if (typeof value === 'number' || (typeof value === 'string' && !isNaN(parseFloat(value)))) {
+                    const numValue = parseFloat(value);
+                    if (!isNaN(numValue)) {
+                        // Format based on column type
+                        if (header.toLowerCase().includes('price')) {
+                            td.textContent = numValue.toFixed(5);
+                        } else if (header.toLowerCase().includes('amount') || header.toLowerCase().includes('quantity')) {
+                            td.textContent = numValue.toFixed(6);
+                        } else if (header.toLowerCase().includes('total')) {
+                            td.textContent = numValue.toFixed(2);
+                        } else {
+                            td.textContent = value;
+                        }
+                    } else {
+                        td.textContent = value;
+                    }
+                } else {
+                    td.textContent = value;
+                }
+                
                 tr.appendChild(td);
             });
             
