@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Profit Calculator - Excel Import</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <h1>Trading Profit Calculator</h1>
+            
+            <!-- File Upload Section -->
+            <div class="upload-section">
+                <div id="dropZone" class="drop-zone">
+                    <div class="drop-content">
+                        <div class="drop-icon">📊</div>
+                        <h3>Drop your Excel trading file here</h3>
+                        <p>or <button id="fileSelectBtn" class="file-select-btn">choose file</button></p>
+                        <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" hidden>
+                        <small>Supports .xlsx, .xls, .csv files</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manual Entry Toggle -->
+            <div class="mode-toggle">
+                <button id="manualModeBtn" class="mode-btn">Manual Entry Mode</button>
+            </div>
+
+            <!-- Manual Purchases Table (Hidden by default) -->
+            <div id="manualSection" class="purchases-section" style="display: none;">
+                <div class="table-header">
+                    <h3>Manual Entry</h3>
+                    <button id="addRowBtn" class="add-row-btn">+ Add Row</button>
+                </div>
+                
+                <div class="table-container">
+                    <table id="purchasesTable" class="purchases-table">
+                        <thead>
+                            <tr>
+                                <th>Buy Price (USDT)</th>
+                                <th>Quantity</th>
+                                <th>Total (USDT)</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="purchasesTableBody">
+                            <!-- Rows will be added dynamically -->
+                        </tbody>
+                    </table>
+                    
+                    <div id="emptyTableMessage" class="empty-table-message">
+                        Click "Add Row" to start adding your purchases manually
+                    </div>
+                </div>
+            </div>
+
+            <!-- Excel Data Table -->
+            <div id="excelSection" class="excel-section" style="display: none;">
+                <div class="table-header">
+                    <h3>Trading Data <span id="fileName" class="file-name"></span></h3>
+                    <div class="table-controls">
+                        <button id="selectAllBtn" class="control-btn">Select All Buys</button>
+                        <button id="clearSelectionBtn" class="control-btn">Clear Selection</button>
+                        <span id="selectedCount" class="selected-count">0 selected</span>
+                    </div>
+                </div>
+                
+                <div class="table-container excel-table-container">
+                    <table id="excelTable" class="excel-table">
+                        <thead id="excelTableHead">
+                            <!-- Headers will be populated dynamically -->
+                        </thead>
+                        <tbody id="excelTableBody">
+                            <!-- Data will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Summary Section -->
+            <div class="summary-section">
+                <div class="summary-item">
+                    <span class="summary-label">Average Buy Price:</span>
+                    <span id="avgBuyPrice" class="summary-value">0.00 USDT</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Total Quantity:</span>
+                    <span id="totalQuantity" class="summary-value">0.00</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Total Investment:</span>
+                    <span id="totalInvestment" class="summary-value">0.00 USDT</span>
+                </div>
+            </div>
+
+            <!-- Sell Price Section -->
+            <div class="sell-section">
+                <div class="input-group">
+                    <label for="sellPrice">Planned Sell Price (USDT)</label>
+                    <input type="number" id="sellPrice" step="0.00001" placeholder="Enter planned sell price" />
+                </div>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="results-section">
+                <div class="result-item">
+                    <span class="result-label">Total Return:</span>
+                    <span id="totalReturn" class="result-value">0.00 USDT</span>
+                </div>
+                
+                <div class="result-item">
+                    <span class="result-label">Profit/Loss:</span>
+                    <span id="profitLoss" class="result-value">0.00 USDT</span>
+                </div>
+                
+                <div class="result-item highlight">
+                    <span class="result-label">Gain Percentage:</span>
+                    <span id="gainPercentage" class="result-value">0.00%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="calculator.js"></script>
+</body>
+</html> 

@@ -1,0 +1,524 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.calculator {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.upload-section,
+.mode-toggle,
+.purchases-section,
+.excel-section,
+.summary-section,
+.sell-section {
+    margin-bottom: 25px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.table-header h3 {
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* File Upload Styles */
+.drop-zone {
+    border: 3px dashed #667eea;
+    border-radius: 15px;
+    padding: 40px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.drop-zone:hover,
+.drop-zone.dragover {
+    border-color: #28a745;
+    background: linear-gradient(135deg, #f0fff4 0%, #e8f5e8 100%);
+    transform: scale(1.02);
+}
+
+.drop-content h3 {
+    color: #333;
+    margin: 10px 0;
+    font-size: 1.4rem;
+}
+
+.drop-content p {
+    color: #666;
+    margin: 15px 0;
+}
+
+.drop-content small {
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.drop-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.file-select-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.file-select-btn:hover {
+    background: #5a6fd8;
+}
+
+/* Mode Toggle */
+.mode-toggle {
+    text-align: center;
+}
+
+.mode-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.mode-btn:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+}
+
+.mode-btn.active {
+    background: #28a745;
+}
+
+/* File Name Display */
+.file-name {
+    color: #667eea;
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+/* Table Controls */
+.table-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.control-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.control-btn:hover {
+    background: #5a6268;
+}
+
+.selected-count {
+    color: #667eea;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.add-row-btn {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-row-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.add-row-btn:active {
+    transform: translateY(0);
+}
+
+.remove-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.remove-btn:hover {
+    background: #c82333;
+}
+
+.results-section {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid #e9ecef;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.result-item.highlight {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin: 15px -15px -15px -15px;
+    padding: 20px 15px;
+    border-radius: 0 0 15px 15px;
+    color: white;
+    font-weight: 600;
+}
+
+.result-label {
+    font-weight: 500;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.result-item.highlight .result-label {
+    color: white;
+}
+
+.result-value {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.result-item.highlight .result-value {
+    color: white;
+    font-size: 1.3rem;
+}
+
+.profit {
+    color: #28a745 !important;
+}
+
+.loss {
+    color: #dc3545 !important;
+}
+
+.table-container {
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+}
+
+.purchases-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.purchases-table thead {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.purchases-table th {
+    padding: 12px 10px;
+    text-align: left;
+    font-weight: 600;
+    color: #495057;
+    border-bottom: 2px solid #dee2e6;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.purchases-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #f1f3f4;
+    vertical-align: middle;
+}
+
+.purchases-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.purchases-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-input {
+    width: 100%;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-size: 0.9rem;
+    transition: border-color 0.2s ease;
+    background: #fff;
+}
+
+.table-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
+
+.total-cell {
+    font-weight: 600;
+    color: #28a745;
+    background: #f8fff9;
+}
+
+.empty-table-message {
+    padding: 40px 20px;
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    background: #f8f9fa;
+}
+
+/* Excel Table Styles */
+.excel-table-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.excel-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.excel-table thead {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.excel-table th {
+    padding: 10px 8px;
+    text-align: left;
+    font-weight: 600;
+    color: #1565c0;
+    border-bottom: 2px solid #2196f3;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.excel-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #f1f3f4;
+    vertical-align: middle;
+    font-size: 0.8rem;
+}
+
+.excel-table tbody tr:hover {
+    background: #f0f8ff;
+}
+
+.excel-table tbody tr.selected {
+    background: #e3f2fd !important;
+}
+
+.excel-table tbody tr.buy-row {
+    border-left: 3px solid #28a745;
+}
+
+.excel-table tbody tr.sell-row {
+    border-left: 3px solid #dc3545;
+}
+
+.excel-table .checkbox-cell {
+    width: 40px;
+    text-align: center;
+}
+
+.excel-table .side-buy {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.excel-table .side-sell {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.row-checkbox {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.summary-section {
+    background: #e3f2fd;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #bbdefb;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.summary-label {
+    font-weight: 500;
+    color: #1565c0;
+}
+
+.summary-value {
+    font-weight: 600;
+    color: #0d47a1;
+    font-size: 1.1rem;
+}
+
+.sell-section {
+    background: #fff3e0;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ffcc02;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .calculator {
+        padding: 30px 20px;
+        margin: 10px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .results-section,
+    .summary-section,
+    .sell-section {
+        padding: 15px;
+    }
+    
+    .table-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .table-controls {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .drop-zone {
+        padding: 30px 15px;
+    }
+    
+    .drop-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .purchases-table {
+        font-size: 0.8rem;
+    }
+    
+    .purchases-table th,
+    .purchases-table td {
+        padding: 8px 6px;
+    }
+    
+    .table-input {
+        font-size: 0.8rem;
+        padding: 4px 6px;
+    }
+} 
