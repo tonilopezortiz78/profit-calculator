@@ -474,19 +474,26 @@ input[type="number"]:focus {
 
 /* Responsive design */
 @media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
     .calculator {
-        padding: 30px 20px;
-        margin: 10px;
+        padding: 20px 15px;
+        margin: 0;
+        border-radius: 15px;
     }
     
     h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        margin-bottom: 20px;
     }
     
     .results-section,
     .summary-section,
     .sell-section {
         padding: 15px;
+        margin-bottom: 20px;
     }
     
     .table-header {
@@ -501,24 +508,107 @@ input[type="number"]:focus {
     }
     
     .drop-zone {
-        padding: 30px 15px;
+        padding: 25px 15px;
     }
     
     .drop-content h3 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     
-    .purchases-table {
-        font-size: 0.8rem;
+    .drop-icon {
+        font-size: 2rem;
+    }
+    
+    /* Better table responsiveness */
+    .table-container,
+    .excel-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .excel-table-container {
+        max-height: 300px;
+    }
+    
+    .purchases-table,
+    .excel-table {
+        font-size: 0.75rem;
+        min-width: 100%;
     }
     
     .purchases-table th,
-    .purchases-table td {
-        padding: 8px 6px;
+    .purchases-table td,
+    .excel-table th,
+    .excel-table td {
+        padding: 6px 4px;
+        white-space: nowrap;
     }
     
     .table-input {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         padding: 4px 6px;
+        min-width: 80px;
+    }
+    
+    /* Responsive summary and results */
+    .summary-item,
+    .result-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 8px 0;
+    }
+    
+    .summary-label,
+    .result-label {
+        font-size: 0.85rem;
+    }
+    
+    .summary-value,
+    .result-value {
+        font-size: 1rem;
+    }
+    
+    .result-item.highlight .result-value {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.4rem;
+    }
+    
+    .calculator {
+        padding: 15px 10px;
+    }
+    
+    .drop-content h3 {
+        font-size: 1rem;
+    }
+    
+    .drop-icon {
+        font-size: 1.5rem;
+    }
+    
+    .excel-table-container {
+        max-height: 250px;
+    }
+    
+    .purchases-table,
+    .excel-table {
+        font-size: 0.7rem;
+    }
+    
+    .control-btn,
+    .add-row-btn,
+    .mode-btn {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+    
+    .summary-item,
+    .result-item {
+        padding: 6px 0;
     }
 } 
