@@ -745,6 +745,41 @@ input[type="number"]:focus {
     }
 } 
 
+/* Empty table state */
+.empty-table-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    color: #6c757d;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.empty-table-state h4 {
+    margin: 0 0 10px 0;
+    color: #495057;
+    font-size: 1.2rem;
+}
+
+.empty-table-state p {
+    margin: 0;
+    font-size: 0.9rem;
+    max-width: 400px;
+}
+
+/* Hide empty state when table has data */
+.excel-table:not(:empty) ~ .empty-table-state {
+    display: none;
+}
+
 /* Responsive table indicator */
 .table-responsive-info {
     display: none;

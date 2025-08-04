@@ -106,6 +106,12 @@ document.addEventListener('DOMContentLoaded', function() {
         excelTableBody.innerHTML = '';
         selectedRows.clear();
         
+        // Hide empty state
+        const emptyState = document.getElementById('emptyTableState');
+        if (emptyState) {
+            emptyState.style.display = 'none';
+        }
+        
         // Get headers from first row
         const headers = Object.keys(data[0]);
         
@@ -554,6 +560,6 @@ document.addEventListener('DOMContentLoaded', function() {
     updateSummary();
     calculateResults();
     
-    // Hide summary section initially when no data
-    hideEmptyResults();
+    // Show the excel section immediately so users can see the interface
+    excelSection.style.display = 'block';
 }); 

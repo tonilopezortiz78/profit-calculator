@@ -59,7 +59,7 @@
             </div>
 
             <!-- Excel Data Table -->
-            <div id="excelSection" class="excel-section" style="display: none;">
+            <div id="excelSection" class="excel-section">
                 <div class="table-header">
                     <h3>Trading Data <span id="fileName" class="file-name"></span></h3>
                     <div class="table-controls">
@@ -82,6 +82,12 @@
                             <!-- Data will be populated dynamically -->
                         </tbody>
                     </table>
+                    
+                    <div id="emptyTableState" class="empty-table-state">
+                        <div class="empty-icon">📊</div>
+                        <h4>No trading data loaded</h4>
+                        <p>Upload your Excel file using the drop zone above to see your trading data here.</p>
+                    </div>
                 </div>
             </div>
 
